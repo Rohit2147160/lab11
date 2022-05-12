@@ -60,25 +60,23 @@ int ceil(struct node * root,int data){
 	return (c >= data) ? c: root->key;
 }
 
-int floor(struct node * root,int data){
-	if(root == NULL){
-		return -1;
-	}
-	if(root->key == data){
-		return root->key;;
-	}
-	if(root->key < data){
-		return floor(root->right,data);
-	}
-//	int f = floor(root->left,data);
-//	return (f <= data) ? f:root->key;  
-    if(root->key > data){
-    	return floor(root->left,data);
-	}
-	else{
-		return root->key;
-	}
+int floor(struct node* root, int key)
+{
+    if (!root)
+        return INT_MAX;
+ 
+   
+    if (root->key == key)
+        return root->key;
+
+    if (root->key > key)
+        return floor(root->left, key);
+ 
+
+    int floorValue = floor(root->right, key);
+    return (floorValue <= key) ? floorValue : root->key;
 }
+ 
 
 
 
